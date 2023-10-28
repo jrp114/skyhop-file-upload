@@ -1,27 +1,17 @@
-import classNames from 'classnames';
+import { ReactNode } from 'react';
 
 interface DropdownProps {
-  label: string;
-  small?: boolean;
+  label: string | ReactNode;
+  classes?: string;
 }
 
 export default function Dropdown(props: DropdownProps) {
   return (
     <div>
-      <button
-        className={classNames(
-          'border border-gray-400 rounded-lg py-2 px-4 flex text-xs',
-          {
-            'font-bold': !props.small,
-          },
-        )}
-      >
+      <button className="border border-gray-400 rounded-lg py-2 px-4 flex text-xs">
         {props.label}
         <img
-          className={classNames('w-5 h-5 mr-1', {
-            'ml-2': props.small,
-            'ml-52': !props.small,
-          })}
+          className={`w-5 h-5 mr-1 ${props.classes}`}
           src="./arrow-down.svg"
           alt="arrow-down"
         />
