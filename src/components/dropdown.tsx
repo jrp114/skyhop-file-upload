@@ -8,7 +8,7 @@ interface DropdownProps {
 export default function Dropdown(props: DropdownProps) {
   return (
     <div>
-      <button className="border border-gray-400 rounded-lg py-2 px-4 flex text-xs">
+      <button className="border border-gray-400 rounded-lg py-2 px-4 w-full flex justify-between text-xs">
         {props.label}
         <img
           className={`w-5 h-5 mr-1 ${props.classes}`}
