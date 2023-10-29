@@ -14,7 +14,7 @@ export default function FileUploadStatus(props: FileUploadStatusProps) {
         <div>
           <div className="flex flex-row justify-between w-full">
             <div className="text-gray-300 text-sm">File Name</div>
-            <div className="text-gray-500 text-xs">5.7MB</div>
+            <div className="text-gray-500 text-2xs font-bold">5.7MB</div>
           </div>
           <svg
             height={props.height}

@@ -7,6 +7,9 @@ module.exports = {
         primary: '#003b71',
         secondary: '#ff9e16',
       },
+      fontSize: {
+        '2xs': '.5rem',
+      },
     },
   },
   plugins: [],
