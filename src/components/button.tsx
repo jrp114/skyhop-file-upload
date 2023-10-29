@@ -13,7 +13,7 @@ export default function Button(props: ButtonProps) {
       type="button"
       onClick={props.onClick}
       className={classNames(
-        'text-sm text-white font-bold border-2 border-gray-300 rounded-md p-1 px-10',
+        'text-xs font-bold border-2 border-gray-300 rounded-md p-2 px-10 min-w-[200px]',
         {
           'bg-primary text-white': variant === 'primary',
           'bg-white border border-secondary text-secondary':
