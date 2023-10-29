@@ -1,0 +1,7 @@
+<svg width="200" height="5" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="0" y="0" width="200" height="5" fill="#ccc" />
+  
+  <!-- Progress -->
+  <rect x="0" y="0" width="0" height="5" fill="blue" id="progressBar" />
+</svg>
