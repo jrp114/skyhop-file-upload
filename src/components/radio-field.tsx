@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 
-interface CheckboxFieldProps {
+interface RadioFieldProps {
   label: string;
   checked: boolean;
   onChange: () => void;
 }
 
-export default function CheckboxField(props: CheckboxFieldProps) {
+export default function RadioField(props: RadioFieldProps) {
   return (
     <label className="px-2 text-xs flex items-center">
       <div
