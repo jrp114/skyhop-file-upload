@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import './App.css';
 import Button from './components/button';
 import ClockIcon from './components/clock-icon';
@@ -21,46 +21,72 @@ const HorizontalSeparator = () => (
   <div className=" border-l-2 border-gray-300 mx-2 h-5" />
 );
 
+const initialState = {
+  splitSchedule: 'yes',
+  client: 'multiple',
+  toggle: true,
+  dragOver: false,
+  file: null,
+};
+
+const reducer = (state: any, action: any) => {
+  switch (action.type) {
+    case 'splitSchedule':
+      return { ...state, splitSchedule: action.payload };
+    case 'client':
+      return { ...state, client: action.payload };
+    case 'toggle':
+      return { ...state, toggle: action.payload };
+    case 'dragOver':
+      return { ...state, dragOver: action.payload };
+    case 'file':
+      return { ...state, file: action.payload };
+    default:
+      return state;
+  }
+};
+
 function App() {
-  const [splitSchedule, setSplitSchedule] = useState('yes');
-  const [client, setClient] = useState('multiple');
-  const [toggle, setToggle] = useState(true);
-  const [dragOver, setDragOver] = useState(false);
-  const [file, setFile] = useState<{ name: string } | null>(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleSplitScheduleCheck = () => {
-    setSplitSchedule(splitSchedule === 'yes' ? 'no' : 'yes');
+    dispatch({
+      type: 'splitSchedule',
+      payload: state.splitSchedule === 'yes' ? 'no' : 'yes',
+    });
   };
 
   const handleClientCheckbox = () => {
-    setClient(client === 'multiple' ? 'single' : 'multiple');
+    dispatch({
+      type: 'client',
+      payload: state.client === 'multiple' ? 'single' : 'multiple',
+    });
   };
 
   const handleToggle = () => {
-    setToggle(!toggle);
+    dispatch({ type: 'toggle', payload: !state.toggle });
   };
 
   const handleDrop = (event: any) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
-    setFile(file);
-    setDragOver(false);
+    dispatch({ type: 'file', payload: file });
+    dispatch({ type: 'dragOver', payload: false });
   };
 
   const handleDragLeave = (event: any) => {
     event.preventDefault();
-    setDragOver(false);
+    dispatch({ type: 'dragOver', payload: false });
   };
 
   const handleDragOver = (event: any) => {
     event.preventDefault();
-    setDragOver(true);
+    dispatch({ type: 'dragOver', payload: true });
   };
 
   const handleFileSelect = (event: any) => {
     const file = event.target.files[0];
-    console.log(file);
-    setFile(file);
+    dispatch({ type: 'file', payload: file });
   };
 
   return (
@@ -87,13 +113,16 @@ function App() {
                 <div>
                   <FileUploadBox
                     label="Upload Manifest"
-                    dragOver={dragOver}
+                    dragOver={state.dragOver}
                     handleFileSelect={handleFileSelect}
                     handleDrop={handleDrop}
                     handleDragOver={handleDragOver}
                     handleDragLeave={handleDragLeave}
                   />
-                  <FileUploadStatus current={current} fileName={file?.name} />
+                  <FileUploadStatus
+                    current={current}
+                    fileName={state.file?.name}
+                  />
                 </div>
               </SectionWrapper>
               <VerticalSeparator />
@@ -106,9 +135,12 @@ function App() {
                 <div className="font-bold">Tolerance Window:</div>
                 <div className="flex flex-row gap-1">
                   <div className="flex flex-row gap-1 items-center">
-                    <ToggleButton toggle={toggle} handleToggle={handleToggle} />
+                    <ToggleButton
+                      toggle={state.toggle}
+                      handleToggle={handleToggle}
+                    />
                     <div className="text-xs">
-                      Toggle {toggle ? 'ON' : 'OFF'}
+                      Toggle {state.toggle ? 'ON' : 'OFF'}
                     </div>
                   </div>
                   <HorizontalSeparator />
@@ -128,12 +160,12 @@ function App() {
                   <div className="flex flex-row">
                     <RadioField
                       label="Yes"
-                      checked={splitSchedule === 'yes'}
+                      checked={state.splitSchedule === 'yes'}
                       onChange={handleSplitScheduleCheck}
                     />
                     <RadioField
                       label="No"
-                      checked={splitSchedule === 'no'}
+                      checked={state.splitSchedule === 'no'}
                       onChange={handleSplitScheduleCheck}
                     />
                   </div>
@@ -149,12 +181,12 @@ function App() {
                   <div className="flex flex-row">
                     <RadioField
                       label="Single"
-                      checked={client === 'single'}
+                      checked={state.client === 'single'}
                       onChange={handleClientCheckbox}
                     />
                     <RadioField
                       label="Multiple"
-                      checked={client === 'multiple'}
+                      checked={state.client === 'multiple'}
                       onChange={handleClientCheckbox}
                     />
                   </div>
