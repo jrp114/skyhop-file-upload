@@ -25,6 +25,8 @@ function App() {
   const [splitSchedule, setSplitSchedule] = useState('yes');
   const [client, setClient] = useState('multiple');
   const [toggle, setToggle] = useState(true);
+  const [dragOver, setDragOver] = useState(false);
+  const [file, setFile] = useState<{ name: string } | null>(null);
 
   const handleSplitScheduleCheck = () => {
     setSplitSchedule(splitSchedule === 'yes' ? 'no' : 'yes');
@@ -36,6 +38,29 @@ function App() {
 
   const handleToggle = () => {
     setToggle(!toggle);
+  };
+
+  const handleDrop = (event: any) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    setFile(file);
+    setDragOver(false);
+  };
+
+  const handleDragLeave = (event: any) => {
+    event.preventDefault();
+    setDragOver(false);
+  };
+
+  const handleDragOver = (event: any) => {
+    event.preventDefault();
+    setDragOver(true);
+  };
+
+  const handleFileSelect = (event: any) => {
+    const file = event.target.files[0];
+    console.log(file);
+    setFile(file);
   };
 
   return (
@@ -60,8 +85,15 @@ function App() {
                   Select a manifest that you'd like to import
                 </div>
                 <div>
-                  <FileUploadBox label="Upload Manifest" />
-                  <FileUploadStatus current={current} />
+                  <FileUploadBox
+                    label="Upload Manifest"
+                    dragOver={dragOver}
+                    handleFileSelect={handleFileSelect}
+                    handleDrop={handleDrop}
+                    handleDragOver={handleDragOver}
+                    handleDragLeave={handleDragLeave}
+                  />
+                  <FileUploadStatus current={current} fileName={file?.name} />
                 </div>
               </SectionWrapper>
               <VerticalSeparator />
