@@ -1,9 +1,10 @@
 interface FileUploadStatusProps {
   current: number;
-  width: number;
-  height: number;
-  scale: number;
 }
+
+const height = 3;
+const width = 325;
+const scale = width / 100;
 
 export default function FileUploadStatus(props: FileUploadStatusProps) {
   return (
@@ -17,24 +18,24 @@ export default function FileUploadStatus(props: FileUploadStatusProps) {
             <div className="text-gray-500 text-2xs font-bold">5.7MB</div>
           </div>
           <svg
-            height={props.height}
-            width={props.width}
-            viewBox={`0 0 ${props.width} ${props.height}`}
+            height={height}
+            width={width}
+            viewBox={`0 0 ${width} ${height}`}
             preserveAspectRatio="xMinYMin meet"
           >
             <g>
               <rect
                 x={0}
                 y={0}
-                width={props.width}
-                height={props.height}
+                width={width}
+                height={height}
                 className="fill-gray-300"
               />
               <rect
                 x={0}
                 y={0}
-                width={props.current * props.scale}
-                height={props.height}
+                width={props.current * scale}
+                height={height}
                 className="fill-secondary"
               />
             </g>
