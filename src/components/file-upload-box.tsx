@@ -29,7 +29,12 @@ export default function FileUploadBox(props: FileUploadBoxProps) {
         <img className="h-5 w-5" src="./file-lines.svg" alt="file" />
         <span className="text-gray-500 text-xs">
           Drag & Drop Here or{' '}
-          <span className="font-bold text-primary">Browse</span>
+          <span
+            onClick={() => fileInputRef?.current?.click()}
+            className="font-bold text-primary cursor-pointer"
+          >
+            Browse
+          </span>
         </span>
       </div>
       <input
