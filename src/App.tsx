@@ -13,11 +13,11 @@ import ToggleButton from './components/toggle-button';
 // mock values for the file upload status
 const current = 5;
 
-const VerticalSeparator = () => (
+const HorizontalSeparator = () => (
   <div className="border-t border-gray-300 my-3 w-60" />
 );
 
-const HorizontalSeparator = () => (
+const VerticalSeparator = () => (
   <div className=" border-l-2 border-gray-300 mx-2 h-5" />
 );
 
@@ -105,7 +105,7 @@ function App() {
               <Dropdown
                 label={<span className="font-bold">Select Import Name:</span>}
               />
-              <VerticalSeparator />
+              <HorizontalSeparator />
               <SectionWrapper>
                 <div className="font-bold">
                   Select a manifest that you'd like to import
@@ -125,12 +125,12 @@ function App() {
                   />
                 </div>
               </SectionWrapper>
-              <VerticalSeparator />
+              <HorizontalSeparator />
               <SectionWrapper>
                 <div className="font-bold">Elapse Data Checking:</div>
                 <div className="text-green-700">No Elapsed Dates!</div>
               </SectionWrapper>
-              <VerticalSeparator />
+              <HorizontalSeparator />
               <SectionWrapper>
                 <div className="font-bold">Tolerance Window:</div>
                 <div className="flex flex-row gap-1">
@@ -143,7 +143,7 @@ function App() {
                       Toggle {state.toggle ? 'ON' : 'OFF'}
                     </div>
                   </div>
-                  <HorizontalSeparator />
+                  <VerticalSeparator />
                   <div className="flex flex-row gap-1 items-center">
                     <ClockIcon />
                     <div className="text-xs">Select Tolerance Level</div>
@@ -170,12 +170,12 @@ function App() {
                     />
                   </div>
                 </SectionWrapper>
-                <VerticalSeparator />
+                <HorizontalSeparator />
                 <SectionWrapper>
                   <div className="font-bold">Location Checking:</div>
                   <div className="text-green-700">All Available!</div>
                 </SectionWrapper>
-                <VerticalSeparator />
+                <HorizontalSeparator />
                 <SectionWrapper>
                   <div className="font-bold">Client:</div>
                   <div className="flex flex-row">
