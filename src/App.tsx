@@ -103,7 +103,25 @@ function App() {
           <div className="grid grid-cols-11 gap-10 py-8 mx-8">
             <div className="col-span-6">
               <Dropdown
+                options={[
+                  {
+                    key: '1',
+                    value: '1',
+                    label: 'Import 1',
+                  },
+                  {
+                    key: '2',
+                    value: '2',
+                    label: 'Import 2',
+                  },
+                  {
+                    key: '3',
+                    value: '3',
+                    label: 'Import 3',
+                  },
+                ]}
                 label={<span className="font-bold">Select Import Name:</span>}
+                handleClick={(v) => console.log('click', v)}
               />
               <HorizontalSeparator />
               <SectionWrapper>
@@ -197,7 +215,28 @@ function App() {
                     >
                       {`Testing Center ${num}`}
                       <div className="flex flex-row items-center gap-1">
-                        <Dropdown label="Select Client" classes="ml-2" />
+                        <Dropdown
+                          options={[
+                            {
+                              key: 'a',
+                              value: 'a',
+                              label: 'Client A',
+                            },
+                            {
+                              key: 'b',
+                              value: 'b',
+                              label: 'Client B',
+                            },
+                            {
+                              key: 'c',
+                              value: 'c',
+                              label: 'Client C',
+                            },
+                          ]}
+                          label="Select Client"
+                          classes="ml-2"
+                          handleClick={(v) => console.log('click', v)}
+                        />
                         <ClockIcon />
                       </div>
                     </div>
