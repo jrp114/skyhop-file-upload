@@ -1,6 +1,9 @@
+import React from 'react';
+
 interface FileUploadStatusProps {
   current: number;
   fileName?: string;
+  fileSize?: number;
 }
 
 const height = 3;
@@ -8,6 +11,12 @@ const width = 325;
 const scale = width / 100;
 
 export default function FileUploadStatus(props: FileUploadStatusProps) {
+  const sizeInMb = React.useMemo(() => {
+    if (props.fileSize) {
+      return `${(props.fileSize / 1000000).toFixed(1)}MB`;
+    }
+    return '0MB';
+  }, [props.fileSize]);
   return (
     <>
       <div className="border-t border-gray-300 my-3" />
@@ -18,7 +27,7 @@ export default function FileUploadStatus(props: FileUploadStatusProps) {
             <div className="text-gray-300 text-sm">
               {props.fileName ? props.fileName : 'File Name'}
             </div>
-            <div className="text-gray-500 text-2xs font-bold">5.7MB</div>
+            <div className="text-gray-500 text-2xs font-bold">{sizeInMb}</div>
           </div>
           <svg
             height={height}

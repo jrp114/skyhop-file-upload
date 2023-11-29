@@ -10,9 +10,6 @@ import RadioField from './components/radio-field';
 import SectionWrapper from './components/section-wrapper';
 import ToggleButton from './components/toggle-button';
 
-// mock values for the file upload status
-const current = 5;
-
 const HorizontalSeparator = () => (
   <div className="border-t border-gray-300 my-3 w-60" />
 );
@@ -27,6 +24,7 @@ const initialState = {
   toggle: true,
   dragOver: false,
   file: null,
+  current: 0,
 };
 
 const reducer = (state: any, action: any) => {
@@ -41,6 +39,8 @@ const reducer = (state: any, action: any) => {
       return { ...state, dragOver: action.payload };
     case 'file':
       return { ...state, file: action.payload };
+    case 'current':
+      return { ...state, current: action.payload };
     default:
       return state;
   }
@@ -86,6 +86,12 @@ function App() {
 
   const handleFileSelect = (event: any) => {
     const file = event.target.files[0];
+    // simulating the file upload progress
+    for (let i = 0; i <= 100; i++) {
+      setTimeout(() => {
+        dispatch({ type: 'current', payload: i });
+      }, 10 * i);
+    }
     dispatch({ type: 'file', payload: file });
   };
 
@@ -138,8 +144,9 @@ function App() {
                     handleDragLeave={handleDragLeave}
                   />
                   <FileUploadStatus
-                    current={current}
+                    current={state.current}
                     fileName={state.file?.name}
+                    fileSize={state.file?.size}
                   />
                 </div>
               </SectionWrapper>
