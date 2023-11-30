@@ -49,17 +49,17 @@ const reducer = (state: any, action: any) => {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleSplitScheduleCheck = () => {
+  const handleSplitScheduleCheck = (value: 'yes' | 'no') => {
     dispatch({
       type: 'splitSchedule',
-      payload: state.splitSchedule === 'yes' ? 'no' : 'yes',
+      payload: value,
     });
   };
 
-  const handleClientCheckbox = () => {
+  const handleClientCheckbox = (value: 'single' | 'multiple') => {
     dispatch({
       type: 'client',
-      payload: state.client === 'multiple' ? 'single' : 'multiple',
+      payload: value,
     });
   };
 
@@ -186,12 +186,12 @@ function App() {
                     <RadioField
                       label="Yes"
                       checked={state.splitSchedule === 'yes'}
-                      onChange={handleSplitScheduleCheck}
+                      onChange={() => handleSplitScheduleCheck('yes')}
                     />
                     <RadioField
                       label="No"
                       checked={state.splitSchedule === 'no'}
-                      onChange={handleSplitScheduleCheck}
+                      onChange={() => handleSplitScheduleCheck('no')}
                     />
                   </div>
                 </SectionWrapper>
@@ -207,12 +207,12 @@ function App() {
                     <RadioField
                       label="Single"
                       checked={state.client === 'single'}
-                      onChange={handleClientCheckbox}
+                      onChange={() => handleClientCheckbox('single')}
                     />
                     <RadioField
                       label="Multiple"
                       checked={state.client === 'multiple'}
-                      onChange={handleClientCheckbox}
+                      onChange={() => handleClientCheckbox('multiple')}
                     />
                   </div>
                   {[1, 2, 3, 4].map((num) => (
