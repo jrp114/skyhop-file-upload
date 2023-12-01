@@ -5,5 +5,9 @@ interface SectionWrapperProps {
 }
 
 export default function SectionWrapper(props: SectionWrapperProps) {
-  return <div className="flex flex-col gap-1">{props.children}</div>;
+  return (
+    <div className="flex flex-col gap-1 xs:items-center lg:items-start">
+      {props.children}
+    </div>
+  );
 }

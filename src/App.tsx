@@ -11,7 +11,7 @@ import SectionWrapper from './components/section-wrapper';
 import ToggleButton from './components/toggle-button';
 
 const HorizontalSeparator = () => (
-  <div className="border-t border-gray-300 my-3 w-60" />
+  <div className="border-t border-gray-300 my-3 w-60 xs:mx-auto lg:mx-0" />
 );
 
 const VerticalSeparator = () => (
@@ -97,7 +97,7 @@ function App() {
 
   return (
     <div className="text-xs">
-      <div className="flex justify-center items-center bg-gray-300 w-screen h-screen">
+      <div className="flex justify-center items-center bg-gray-300 w-screen lg:h-screen py-3">
         <div className="flex flex-col items-center p-8 bg-white rounded-2xl">
           <div className="flex flex-start w-full">
             <Close onClick={() => console.log('click')} />
@@ -106,7 +106,7 @@ function App() {
             Document Upload
           </div>
           {/* Main section */}
-          <div className="grid grid-cols-11 gap-10 py-8 mx-8">
+          <div className="grid lg:grid-cols-11 gap-10 py-8 mx-8 xs:grid-cols-1">
             <div className="col-span-6">
               <Dropdown
                 options={[
