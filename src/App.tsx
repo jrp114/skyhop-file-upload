@@ -3,7 +3,7 @@ import './App.css';
 import Button from './components/button';
 import ClockIcon from './components/clock-icon';
 import { Close } from './components/close';
-import Dropdown from './components/dropdown';
+import Dropdown, { DropdownOption } from './components/dropdown';
 import FileUploadBox from './components/file-upload-box';
 import FileUploadStatus from './components/file-upload-status';
 import RadioField from './components/radio-field';
@@ -18,16 +18,35 @@ const VerticalSeparator = () => (
   <div className=" border-l-2 border-gray-300 mx-2 h-5" />
 );
 
-const initialState = {
+interface State {
+  splitSchedule: 'yes' | 'no';
+  client: 'single' | 'multiple';
+  toggle: boolean;
+  dragOver: boolean;
+  file: File | null;
+  current: number;
+  import: DropdownOption | null;
+  client1: DropdownOption | null;
+  client2: DropdownOption | null;
+  client3: DropdownOption | null;
+  client4: DropdownOption | null;
+}
+
+const initialState: State = {
   splitSchedule: 'yes',
   client: 'multiple',
   toggle: true,
   dragOver: false,
   file: null,
   current: 0,
+  import: null,
+  client1: null,
+  client2: null,
+  client3: null,
+  client4: null,
 };
 
-const reducer = (state: any, action: any) => {
+const reducer = (state: State, action: any) => {
   switch (action.type) {
     case 'splitSchedule':
       return { ...state, splitSchedule: action.payload };
@@ -41,6 +60,16 @@ const reducer = (state: any, action: any) => {
       return { ...state, file: action.payload };
     case 'current':
       return { ...state, current: action.payload };
+    case 'import':
+      return { ...state, import: action.payload };
+    case 'client1':
+      return { ...state, client1: action.payload };
+    case 'client2':
+      return { ...state, client2: action.payload };
+    case 'client3':
+      return { ...state, client3: action.payload };
+    case 'client4':
+      return { ...state, client4: action.payload };
     default:
       return state;
   }
@@ -126,8 +155,15 @@ function App() {
                     label: 'Import 3',
                   },
                 ]}
-                label={<span className="font-bold">Select Import Name:</span>}
-                handleClick={(v) => console.log('click', v)}
+                label={
+                  <span className="font-bold">
+                    {state.import?.label || 'Select Import Name:'}
+                  </span>
+                }
+                handleClick={(v) => {
+                  dispatch({ type: 'import', payload: v });
+                  console.log('click', v);
+                }}
               />
               <HorizontalSeparator />
               <SectionWrapper>
@@ -240,9 +276,18 @@ function App() {
                               label: 'Client C',
                             },
                           ]}
-                          label="Select Client"
+                          label={
+                            state[`client${num}` as keyof typeof state]
+                              ?.label || 'Select Client'
+                          }
                           classes="ml-2"
-                          handleClick={(v) => console.log('click', v)}
+                          handleClick={(v) => {
+                            dispatch({
+                              type: `client${num}`,
+                              payload: v,
+                            });
+                            console.log('click', v);
+                          }}
                         />
                         <ClockIcon />
                       </div>

@@ -1,10 +1,16 @@
 import { ReactNode, useRef, useState } from 'react';
 import { useOutsideClick } from './useOutsideClick';
 
+export interface DropdownOption {
+  key: string;
+  value: string;
+  label: string;
+}
+
 interface DropdownProps {
   label: string | ReactNode;
-  options: Array<{ key: string; value: string; label: string }>;
-  handleClick: (v: string) => void;
+  options: Array<DropdownOption>;
+  handleClick: (v: DropdownOption) => void;
   classes?: string;
 }
 
@@ -39,7 +45,7 @@ export default function Dropdown(props: DropdownProps) {
               key={option.key}
               onClick={() => {
                 setOpen(false);
-                props.handleClick(option.value);
+                props.handleClick(option);
               }}
               className="py-1 text-xs cursor-pointer hover:bg-gray-100 px-4"
             >
