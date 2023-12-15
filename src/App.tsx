@@ -78,6 +78,15 @@ const reducer = (state: State, action: any) => {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const fileProgressSimulator = (file: File) => {
+    // simulating the file upload progress
+    for (let i = 0; i <= 100; i++) {
+      setTimeout(() => {
+        dispatch({ type: 'current', payload: i });
+      }, 10 * i);
+    }
+  };
+
   const handleSplitScheduleCheck = (value: 'yes' | 'no') => {
     dispatch({
       type: 'splitSchedule',
@@ -99,6 +108,7 @@ function App() {
   const handleDrop = (event: any) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
+    fileProgressSimulator(file);
     dispatch({ type: 'file', payload: file });
     dispatch({ type: 'dragOver', payload: false });
   };
@@ -115,12 +125,7 @@ function App() {
 
   const handleFileSelect = (event: any) => {
     const file = event.target.files[0];
-    // simulating the file upload progress
-    for (let i = 0; i <= 100; i++) {
-      setTimeout(() => {
-        dispatch({ type: 'current', payload: i });
-      }, 10 * i);
-    }
+    fileProgressSimulator(file);
     dispatch({ type: 'file', payload: file });
   };
 
