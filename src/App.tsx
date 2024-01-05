@@ -11,11 +11,11 @@ import SectionWrapper from './components/section-wrapper';
 import ToggleButton from './components/toggle-button';
 
 const HorizontalSeparator = () => (
-  <div className="border-t border-gray-300 my-3 w-60 xs:mx-auto lg:mx-0" />
+  <div className="my-3 w-60 border-t border-gray-300 xs:mx-auto lg:mx-0" />
 );
 
 const VerticalSeparator = () => (
-  <div className=" border-l-2 border-gray-300 mx-2 h-5" />
+  <div className="mx-2 h-5 border-l-2 border-gray-300 " />
 );
 
 interface State {
@@ -131,16 +131,16 @@ function App() {
 
   return (
     <div className="text-xs">
-      <div className="flex justify-center items-center bg-gray-300 w-screen lg:h-screen py-3">
-        <div className="flex flex-col items-center p-8 bg-white rounded-2xl">
-          <div className="flex flex-start w-full">
+      <div className="flex w-screen items-center justify-center bg-gray-300 py-3 lg:h-screen">
+        <div className="flex flex-col items-center rounded-2xl bg-white p-8">
+          <div className="flex-start flex w-full">
             <Close onClick={() => console.log('click')} />
           </div>
-          <div className="text-2xl font-bold border-b-2 pb-4">
+          <div className="border-b-2 pb-4 text-2xl font-bold">
             Document Upload
           </div>
           {/* Main section */}
-          <div className="grid lg:grid-cols-11 gap-10 py-8 mx-8 xs:grid-cols-1">
+          <div className="mx-8 grid gap-10 py-8 xs:grid-cols-1 lg:grid-cols-11">
             <div className="col-span-6">
               <Dropdown
                 options={[
@@ -200,7 +200,7 @@ function App() {
               <SectionWrapper>
                 <div className="font-bold">Tolerance Window:</div>
                 <div className="flex flex-row gap-1">
-                  <div className="flex flex-row gap-1 items-center">
+                  <div className="flex flex-row items-center gap-1">
                     <ToggleButton
                       toggle={state.toggle}
                       handleToggle={handleToggle}
@@ -210,7 +210,7 @@ function App() {
                     </div>
                   </div>
                   <VerticalSeparator />
-                  <div className="flex flex-row gap-1 items-center">
+                  <div className="flex flex-row items-center gap-1">
                     <ClockIcon />
                     <div className="text-xs">Select Tolerance Level</div>
                   </div>
@@ -259,7 +259,7 @@ function App() {
                   {[1, 2, 3, 4].map((num) => (
                     <div
                       key={`Testing-${num}`}
-                      className="flex flex-row items-center pt-3 gap-10"
+                      className="flex flex-row items-center gap-10 pt-3"
                     >
                       {`Testing Center ${num}`}
                       <div className="flex flex-row items-center gap-1">

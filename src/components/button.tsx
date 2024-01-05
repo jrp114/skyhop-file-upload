@@ -14,13 +14,13 @@ export default function Button(props: ButtonProps) {
       type="button"
       onClick={props.onClick}
       className={classNames(
-        'text-xs font-bold border-2 border-gray-300 rounded-md',
+        'rounded-md border-2 border-gray-300 text-xs font-bold',
         {
           'bg-primary text-white': variant === 'primary',
-          'bg-white border border-secondary text-secondary':
+          'border border-secondary bg-white text-secondary':
             variant === 'secondary',
-          'p-1 min-w-[175px] px-8': size === 'sm',
-          'p-2 min-w-[200px] px-10': size === 'md',
+          'min-w-[175px] p-1 px-8': size === 'sm',
+          'min-w-[200px] p-2 px-10 ': size === 'md',
           'p-4': size === 'lg',
         },
       )}

@@ -8,13 +8,13 @@ interface RadioFieldProps {
 
 export default function RadioField(props: RadioFieldProps) {
   return (
-    <label className="px-2 text-xs flex items-center">
+    <label className="flex items-center px-2 text-xs">
       <div
-        className="flex justify-center items-center w-5 h-5 border border-primary rounded-full cursor-pointer bg-white"
+        className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full border border-primary bg-white"
         onClick={props.onChange}
       >
         <div
-          className={classNames('w-3 h-3 rounded-full', {
+          className={classNames('h-3 w-3 rounded-full', {
             'bg-primary': props.checked,
           })}
         />

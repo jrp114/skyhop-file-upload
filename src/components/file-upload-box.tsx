@@ -14,24 +14,24 @@ interface FileUploadBoxProps {
 export default function FileUploadBox(props: FileUploadBoxProps) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   return (
-    <div className="border text-center p-3 w-full m-auto">
+    <div className="m-auto w-full border p-3 text-center">
       <div
         onDrop={props.handleDrop}
         onDragOver={props.handleDragOver}
         onDragLeave={props.handleDragLeave}
         className={classNames(
-          'flex flex-col items-center gap-2 border-2 border-dashed border-gray-300 h-24 text-center p-5 mb-3',
+          'mb-3 flex h-24 flex-col items-center gap-2 border-2 border-dashed border-gray-300 p-5 text-center',
           {
             'bg-gray-200': props.dragOver,
           },
         )}
       >
         <img className="h-5 w-5" src="./file-lines.svg" alt="file" />
-        <span className="text-gray-500 text-xs">
+        <span className="text-xs text-gray-500">
           Drag & Drop Here or{' '}
           <span
             onClick={() => fileInputRef?.current?.click()}
-            className="font-bold text-primary cursor-pointer"
+            className="cursor-pointer font-bold text-primary"
           >
             Browse
           </span>

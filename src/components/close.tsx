@@ -5,7 +5,7 @@ interface CloseProps {
 export function Close(props: CloseProps) {
   return (
     <button
-      className="p-1 bg-primary text-white rounded-lg"
+      className="rounded-lg bg-primary p-1 text-white"
       onClick={() => console.log('click')}
     >
       <svg

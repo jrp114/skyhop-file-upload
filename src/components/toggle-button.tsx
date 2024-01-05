@@ -9,7 +9,7 @@ export default function ToggleButton(props: ToggleButtonProps) {
   return (
     <div
       className={classNames(
-        'w-9 h-5 flex items-center border bg-primary rounded-xl relative cursor-pointer',
+        'relative flex h-5 w-9 cursor-pointer items-center rounded-xl border bg-primary',
         {
           'justify-start': !props.toggle,
           'justify-end': props.toggle,
@@ -17,7 +17,7 @@ export default function ToggleButton(props: ToggleButtonProps) {
       )}
       onClick={props.handleToggle}
     >
-      <div className="w-4 h-4 bg-white rounded-full absolute"></div>
+      <div className="absolute h-4 w-4 rounded-full bg-white"></div>
     </div>
   );
 }

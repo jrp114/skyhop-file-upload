@@ -29,17 +29,17 @@ export default function Dropdown(props: DropdownProps) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="border border-gray-400 rounded-lg py-2 px-4 w-full flex justify-between text-xs"
+        className="flex w-full justify-between rounded-lg border border-gray-400 px-4 py-2 text-xs"
       >
         {props.label}
         <img
-          className={`w-5 h-5 mr-1 ${props.classes}`}
+          className={`mr-1 h-5 w-5 ${props.classes}`}
           src="./arrow-down.svg"
           alt="arrow-down"
         />
       </button>
       {open && (
-        <div className="absolute w-full bg-white border border-gray-400 rounded-lg py-2 z-50">
+        <div className="absolute z-50 w-full rounded-lg border border-gray-400 bg-white py-2">
           {props.options.map((option) => (
             <div
               key={option.key}
@@ -47,7 +47,7 @@ export default function Dropdown(props: DropdownProps) {
                 setOpen(false);
                 props.handleClick(option);
               }}
-              className="py-1 text-xs cursor-pointer hover:bg-gray-100 px-4"
+              className="cursor-pointer px-4 py-1 text-xs hover:bg-gray-100"
             >
               {option.label}
             </div>

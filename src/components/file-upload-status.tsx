@@ -19,15 +19,15 @@ export default function FileUploadStatus(props: FileUploadStatusProps) {
   }, [props.fileSize]);
   return (
     <>
-      <div className="border-t border-gray-300 my-3" />
-      <div className="pl-2 flex gap-3 items-center">
+      <div className="my-3 border-t border-gray-300" />
+      <div className="flex items-center gap-3 pl-2">
         <img className="h-5 w-5" src="./file-image.svg" alt="file" />
         <div>
-          <div className="flex flex-row justify-between w-full">
-            <div className="text-gray-300 text-sm">
+          <div className="flex w-full flex-row justify-between">
+            <div className="text-sm text-gray-300">
               {props.fileName ? props.fileName : 'File Name'}
             </div>
-            <div className="text-gray-500 text-2xs font-bold">{sizeInMb}</div>
+            <div className="text-2xs font-bold text-gray-500">{sizeInMb}</div>
           </div>
           <svg
             height={height}
@@ -54,7 +54,7 @@ export default function FileUploadStatus(props: FileUploadStatusProps) {
           </svg>
         </div>
       </div>
-      <div className="border-t border-gray-300 my-3" />
+      <div className="my-3 border-t border-gray-300" />
     </>
   );
 }
